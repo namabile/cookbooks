@@ -19,8 +19,14 @@ node[:dotfiles][:users].each do |user|
     group user_name
   end
 
+  directory "/home/#{user_name}/git" do
+    owner user_name
+    group user_name
+    action :create
+  end
+
   files_to_use.each do |file|
-    file file do
+    file "/home/#{user_name}/dotfiles/#{file}" do
       owner user_name
       group user_name
       mode 600
@@ -28,5 +34,6 @@ node[:dotfiles][:users].each do |user|
       action :create
     end
   end
+
 end
 
