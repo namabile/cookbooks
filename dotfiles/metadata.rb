@@ -1,0 +1,7 @@
+name             'dotfiles'
+maintainer       'namabile'
+maintainer_email 'amabile.n@mgail.com'
+license          'All rights reserved'
+description      'Installs/Configures dotfiles'
+long_description 'Installs/Configures dotfiles'
+version          '0.1.0'
