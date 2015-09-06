@@ -10,6 +10,6 @@
 node[:dotfiles][:users].each do |user|
   execute "Vundle Plugin Install" do
     user user[:user_name]
-    command "vim +PluginInstall"
+    command "vim +PluginInstall +qall"
   end
 end
