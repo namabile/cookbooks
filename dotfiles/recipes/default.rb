@@ -43,9 +43,11 @@ node[:dotfiles][:users].each do |user|
 
   if ::File.exist?("/home/#{user_name}/dotfiles")
     ruby_block "move dotfiles" do
-      files_to_use.each do |file|
-        FileUtils.cp("/home/#{user_name}/dotfiles/#{file}", "/home/#{user_name}/#{file}")
-        FileUtils.chown_R(user_name, user_name, "/home/#{user_name}/#{file}")
+      block do
+        files_to_use.each do |file|
+          FileUtils.cp("/home/#{user_name}/dotfiles/#{file}", "/home/#{user_name}/#{file}")
+          FileUtils.chown_R(user_name, user_name, "/home/#{user_name}/#{file}")
+        end
       end
     end
   end
