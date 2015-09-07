@@ -18,7 +18,8 @@ node[:dotfiles][:users].each do |user|
     revision "master"
     user user_name
     group user_name
-  end.run_action(:sync)
+    action :sync
+  end
 
   directory "/home/#{user_name}/git" do
     owner user_name
@@ -40,14 +41,13 @@ node[:dotfiles][:users].each do |user|
     end
   end
 
-  files_to_use.each do |file|
-    file "/home/#{user_name}/#{file}" do
-      owner user_name
-      group user_name
-      mode 0644
-      content ::File.open("/home/#{user_name}/dotfiles/#{file}").read
-      action :create
-    end.run_action(:create)
+  if ::File.exist?("/home/#{user_name}/dotfiles")
+    ruby_block "move dotfiles" do
+      files_to_use.each do |file|
+        FileUtils.cp("/home/#{user_name}/dotfiles/#{file}", "/home/#{user_name}/#{file}")
+        FileUtils.chown_R(user_name, user_name, "/home/#{user_name}/#{file}")
+      end
+    end
   end
 
 end
