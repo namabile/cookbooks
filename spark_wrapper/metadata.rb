@@ -1,0 +1,7 @@
+name             'spark_wrapper'
+maintainer       'namabile'
+maintainer_email 'amabile.n@gmail.com'
+license          'All rights reserved'
+description      'Wraps the Spark cookbook'
+long_description 'Wraps the Spark cookbook'
+version          '0.1.0'
