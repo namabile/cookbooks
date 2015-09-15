@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: build_spark
+# Cookbook Name:: spark_wrapper
 # Recipe:: default
 #
 # Copyright (C) 2015 YOUR_NAME
