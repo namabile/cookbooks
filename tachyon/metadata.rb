@@ -1,0 +1,7 @@
+name             'tachyon'
+maintainer       'namabile'
+maintainer_email 'amabile.n@gmail.com'
+license          'All rights reserved'
+description      'Installs/Configures tachyon'
+long_description 'Installs/Configures tachyon'
+version          '0.1.0'
