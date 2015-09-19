@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: tachyon
-# Recipe:: start
+# Recipe:: start_master
 #
 # Copyright (C) 2015 NICK AMABILE
 #
@@ -10,9 +10,10 @@
 install_dir = node["tachyon"]["install_dir"]
 tachyon_dir = "#{install_dir}/tachyon-#{node["tachyon"]["version"]}"
 
-execute "start_tachyon" do
+execute "start_tachyon worker" do
   cwd tachyon_dir
-  command "./bin/tachyon format"
+  command "./bin/tachyon-start.sh worker Mount"
   user "root"
-  action :nothing
+  action :run
 end
+

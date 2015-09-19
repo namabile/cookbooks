@@ -14,7 +14,7 @@ marker_file = "#{Chef::Config[:file_cache_path]}/tachyon.fomrmatted"
 execute "format_tachyon" do
   cwd tachyon_dir
   command "./bin/tachyon format"
-  user "root"
+  user "hdfs"
   action :nothing
 end
 
