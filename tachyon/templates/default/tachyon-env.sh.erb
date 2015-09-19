@@ -47,7 +47,7 @@ if [ -z "$JAVA_HOME" ]; then
 fi
 
 export JAVA="$JAVA_HOME/bin/java"
-export TACHYON_MASTER_ADDRESS=localhost
+export TACHYON_MASTER_ADDRESS=<%= @master_host %>
 export TACHYON_UNDERFS_ADDRESS=<%= @underfs_address %>
 export TACHYON_WORKER_MEMORY_SIZE=1GB
 export TACHYON_UNDERFS_HDFS_IMPL=org.apache.hadoop.hdfs.DistributedFileSystem
@@ -82,7 +82,7 @@ export TACHYON_JAVA_OPTS+="
   -Dtachyon.worker.data.folder=/tachyonworker/
   -Dtachyon.master.max.worker.threads=$TACHYON_MASTER_MAX_WORKER_THREADS
   -Dtachyon.master.worker.timeout.ms=60000
-  -Dtachyon.master.hostname=<%= @master_host %>
+  -Dtachyon.master.hostname=$TACHYON_MASTER_ADDRESS
   -Dtachyon.master.journal.folder=$TACHYON_HOME/journal/
   -Dorg.apache.jasper.compiler.disablejsr199=true
   -Djava.net.preferIPv4Stack=true
