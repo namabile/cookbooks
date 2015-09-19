@@ -7,3 +7,4 @@ default["tachyon"]["install_dir"] = "/opt/tachyon"
 default["tachyon"]["web_ui_port"] = "19999"
 default["tachyon"]["master_host"] = "localhost"
 default["tachyon"]["underfs_address"] = "localhost"
+default["tachyon"]["worker_ips"] = ["localhost"]
