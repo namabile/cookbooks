@@ -33,6 +33,7 @@ execute "extract_tachyon_tarball" do
   command "tar xvf #{tachyon_tarball_path}"
   user hdfs_user
   action :run
+  not_if ::File.exists?(install_dir)
 end
 
 template "#{tachyon_dir}/conf/tachyon-env.sh" do

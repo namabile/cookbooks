@@ -16,4 +16,5 @@ execute "build spark" do
   user "root"
   command "./sbin/start-slave.sh #{spark_master_ip}:#{spark_master_port}"
   action :run
+  not_if "ps aux | grep -v grep | grep spark.deploy.worker.Worker"
 end
