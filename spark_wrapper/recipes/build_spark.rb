@@ -24,5 +24,5 @@ execute "build spark" do
   user "root"
   command "build/mvn -P#{spark_hadoop_release} -Dhadoop.version=#{spark_hadoop_version} -Dscala-#{spark_scala_version} -DskipTests clean package"
   action :run
-  not_if  {::File.exists?(::File.expand_path(spark_install_dir, "targets"))}
+  not_if  {::File.exists?(::File.expand_path(spark_install_dir, "core/target/scala-#{scala-version}/classes"))}
 end
