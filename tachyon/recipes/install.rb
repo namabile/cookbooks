@@ -38,7 +38,7 @@ end
 
 execute "chawn hdfs" do
   cwd install_dir
-  command "chown -R #{tachyon_dir}"
+  command "chown -R #{hdfs_user} #{tachyon_dir}"
   user "root"
   action :run
 end
