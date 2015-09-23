@@ -31,9 +31,9 @@ end
 execute "extract_tachyon_tarball" do
   cwd install_dir
   command "tar xvf #{tachyon_tarball_path}"
-  user hdfs_user
+  user "root"
   action :run
-  not_if ::File.exists?(install_dir)
+  not_if {::File.exists?(install_dir)}
 end
 
 template "#{tachyon_dir}/conf/tachyon-env.sh" do

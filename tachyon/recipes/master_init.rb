@@ -18,9 +18,26 @@ execute "format_tachyon" do
   action :nothing
 end
 
+hdfs_home = "/var/lib/hadoop-hdfs"
+
+# create ssh key
+execute "generate ssh keys for hdfs" do
+  user "hdfs"
+  creates ::File.expand_path("#{hdfs_home}/.ssh/id_rsa.pub")
+  command "ssh-keygen -t rsa -q -f #{hdfs_home}/.ssh/id_rsa -P \"\""
+  action :run
+  not_if {::File.exists?("#{hdfs_home}/.ssh/id_rsa.pub")}
+end
+
+execute "authorize the key" do
+  user "hdfs"
+  command "cat #{hdfs_home}/.ssh/id_rsa.pub > #{hdfs_home}/.ssh/authorized_keys"
+  action :run
+end
+
 ruby_block "format_tachyon_if_needed" do
   block do
-    resources(:execute => "format_tachyon").run_action(:run)
+    resources(:execute => "format_tachyon").run_action(:run).user("hdfs")
     File.open(marker_file, 'w') {}
   end
   not_if { File.exist? marker_file }
