@@ -14,12 +14,7 @@ anaconda_nbservice 'notebook-server' do
   # listen on all interfaces; there will be a warning since security is
   # disabled
   ip '*'
-  port '8888'
-
-  #user node["anaconda"]["owner"]
-  #group node["anaconda"]["group"]
-  user "root"
-  group "root"
+  port 8888
 
   install_dir '/opt/ipython/server'
 
